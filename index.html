@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<title>ImHo</title>
+		<script type="text/javascript" src="js/libs/jquery-1.5.1.min.js"></script>
+		<script type="text/javascript" src="js/libs/soapclient.js"></script>
+		<script type="text/javascript" src="js/libs/jaml.js"></script>
+
+		<script type="text/javascript" src="js/modules/user.js"></script>
+		<script type="text/javascript" src="js/modules/image.js"></script>
+		<script type="text/javascript" src="js/modules/album.js"></script>
+		<script type="text/javascript" src="js/soap.js"></script>
+
+		<script type="text/javascript">
+			SOAP.url = 'http://imho.localhost/system/webservice/soapserver.php';
+
+			$(document).ready(function() {
+				$('#sendRequest').click(function() {
+					var userData = {
+						email: $('#userEmail').val(),
+						pass: $('#userPass').val()
+					}
+					SOAP.moduleUserAddItem(userData);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<script type="text/javascript" src="js/templates/testtemplate.js"></script>
+			<script type="text/javascript">
+					var defVal = {
+						email: 'email@example.com',
+						pass: 'PaSSw0rd'
+					}
+					$('#wrapper').html(Jaml.render('testtemplate', defVal));
+			</script>
+			<div id="response"></div>
+		</div>
+	</body>
+</html>
