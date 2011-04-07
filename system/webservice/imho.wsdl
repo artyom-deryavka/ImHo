@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="urn:ImHo" xmlns:tns="urn:ImHo"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<types>
+		<s:schema elementFormDefault="qualified" targetNamespace="urn:ImHo">
+			<s:complexType name="UserData">
+				<s:sequence>
+					<s:element name="email" type="s:string"/>
+					<s:element name="pass" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</types>
+	<message name="ModuleUserAddItemSoapIn">
+		<part name="userData" type="tns:UserData"/>
+	</message>
+	<message name="ModuleUserAddItemSoapOut">
+		<part name="return" type="s:string"/>
+	</message>
+	<portType name="ImHoPortType">
+		<operation name="moduleUserAddItem">
+			<input message="tns:ModuleUserAddItemSoapIn"/>
+			<output message="tns:ModuleUserAddItemSoapOut"/>
+		</operation>
+	</portType>
+	<binding name="ImHoBinding" type="tns:ImHoPortType">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<operation name="moduleUserAddItem">
+			<soap:operation soapAction="urn:ImHo/moduleUserAddItem" style="rpc"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="ImHoService">
+		<port name="ImHoPort" binding="tns:ImHoBinding">
+			<soap:address location="urn:ImHo/system/webservice/soapserver.php"/>
+		</port>
+	</service>
+</definitions>
