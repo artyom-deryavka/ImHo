@@ -6,8 +6,7 @@
 		<script type="text/javascript" src="js/libs/jquery-1.5.1.min.js"></script>
 		<script type="text/javascript" src="js/libs/soapclient.js"></script>
 		<script type="text/javascript" src="js/libs/jaml.js"></script>
-		<script type="text/javascript" src="js/libs/processing/processing-1.1.0.min.js"></script>
-		<script type="text/javascript" src="js/libs/processing/init.js"></script>
+		<script type="text/javascript" src="js/libs/processing-1.1.0.min.js"></script>
 
 		<script type="text/javascript" src="js/modules/user.js"></script>
 		<script type="text/javascript" src="js/modules/image.js"></script>
@@ -38,32 +37,9 @@
 					}
 					$('#wrapper').html(Jaml.render('testtemplate', defVal));
 			</script>
-			<script type="application/processing" target="test-canvas">
-				int barWidth = 5;
-				int[] hue;
 
-				void setup()
-				{
-				  size(400, 400);
-				  colorMode(HSB, 360, height, height);
-				  hue = new int[width/barWidth];
-				  noStroke();
-				}
-
-				void draw()
-				{
-				  int j = 0;
-				  for (int i=0; i<=(width-barWidth); i+=barWidth) {
-					if ((mouseX > i) && (mouseX < i+barWidth)) {
-					  hue[j] = mouseY;
-					}
-					fill(hue[j], height/1.2, height/1.2);
-					rect(i, 0, barWidth, height);
-					j++;
-				  }
-				}
-			</script>
-			<canvas id="test-canvas"></canvas>
+			<canvas data-src="pde/test1.pde"></canvas>
+			<canvas data-src="pde/test2.pde"></canvas>
 		</div>
 	</body>
 </html>
